@@ -17,7 +17,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install all dependencies
-        run: p i
+        run: pnpm i
 
       - name: Run Jest Tests
-        run: p test
+        run: pnpm test
