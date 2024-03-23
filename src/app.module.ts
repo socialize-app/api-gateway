@@ -1,20 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { MicroServicesModule } from './modules/microservices.module';
+import { ConfigModule, ConfigService } from '@socialize-app/config';
+import { TestModule } from './modules/test.module';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      {
-        name: 'USER_SERVICE',
-        transport: Transport.TCP,
-        options: {
-          port: 8765,
-        },
-      },
-    ]),
-  ],
+  imports: [ConfigModule.forRootAsync(), MicroServicesModule, TestModule],
   controllers: [AppController],
   providers: [AppService],
 })
