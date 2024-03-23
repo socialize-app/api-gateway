@@ -1,5 +1,12 @@
 name: Jest Tests
-on: [pull_request, push]
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: '38 22 * * 2'
+    
 jobs:
   run-jest-tests:
     name: Jest Tests
