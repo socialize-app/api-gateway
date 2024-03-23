@@ -1,4 +1,4 @@
-import { MicroServiceClient } from '@@/types/microservices';
+import { MicroServiceClient } from 'types/microservices';
 import { Module, Logger } from '@nestjs/common';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@socialize-app/config';
@@ -19,6 +19,7 @@ const createMicroserviceProvider = (serviceName: string) => {
           port,
         },
       });
+      // eslint-disable-next-line no-undef
       return new Proxy(client, {
         get(target, prop, reciever) {
           if (prop in logger) return logger[prop].bind(logger);

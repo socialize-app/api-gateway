@@ -5,5 +5,5 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  extends: ['@socialize-app/eslint/config/nest.js'],
+  extends: [require.resolve('@socialize-app/eslint/config/nest.js')],
 };

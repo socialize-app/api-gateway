@@ -1,4 +1,4 @@
-import { MicroServiceClient } from '@@/types/microservices';
+import { MicroServiceClient } from 'types/microservices';
 import { Controller, Get, Inject, Logger, Param, Query } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
