@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TestController } from './test.controller';
 import { TestModule } from '../modules/test.module';
-import { ConfigModule } from '@socialize-app/config';
+import { ConfigModule } from 'nest-redis-config';
 import { MicroServicesModule } from '../modules/microservices.module';
 import { catchError, take, throwError, timeout } from 'rxjs';
 

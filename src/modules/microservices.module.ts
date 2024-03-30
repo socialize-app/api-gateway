@@ -1,7 +1,7 @@
 import { MicroServiceClient } from 'types/microservices';
 import { Module, Logger } from '@nestjs/common';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
-import { ConfigService } from '@socialize-app/config';
+import { ConfigService } from 'nest-redis-config';
 
 const createMicroserviceProvider = (serviceName: string) => {
   return {
