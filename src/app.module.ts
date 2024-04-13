@@ -14,7 +14,6 @@ import { DatabaseModule } from '@socialize-app/database';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
         const url = await configService.get('DATABASE_URL');
-        console.warn('url', url);
         return {
           datasources: {
             db: {

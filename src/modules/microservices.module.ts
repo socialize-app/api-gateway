@@ -1,7 +1,8 @@
 import { MicroServiceClient } from 'types/microservices';
-import { Module, Logger } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { ConfigService } from 'nest-redis-config';
+import { Logger } from 'src/providers/logger.provider';
 
 const createMicroserviceProvider = (serviceName: string) => {
   return {
@@ -10,8 +11,8 @@ const createMicroserviceProvider = (serviceName: string) => {
       const port = await configService.get(`${serviceName}_PORT`);
       if (!port) throw new Error(`${serviceName}_PORT is not defined`);
 
-      const logger = new Logger(serviceName);
-      logger.debug(`Connecting to ${serviceName} on port ${port}`);
+      const logger = new Logger('MICROSERVICES');
+      logger.log(`Connecting to ${serviceName} on port ${port}`);
 
       const client = ClientProxyFactory.create({
         transport: Transport.TCP,
@@ -19,6 +20,7 @@ const createMicroserviceProvider = (serviceName: string) => {
           port,
         },
       });
+      
       // eslint-disable-next-line no-undef
       return new Proxy(client, {
         get(target, prop, reciever) {
@@ -36,7 +38,7 @@ export type MicroService = (typeof SERVICES)[number];
 export type MicroServices = { [key in MicroService]: any };
 
 @Module({
-  providers: SERVICES.map(createMicroserviceProvider),
+  providers: [...SERVICES.map(createMicroserviceProvider), Logger],
   exports: SERVICES,
 })
 export class MicroServicesModule {}

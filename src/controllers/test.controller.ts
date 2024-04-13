@@ -5,6 +5,8 @@ import { PrismaService } from '@socialize-app/database';
 
 @Controller()
 export class TestController {
+  const name = 'test';
+
   constructor(
     @Inject('USER_SERVICE')
     private readonly userServiceClient: MicroServiceClient,
